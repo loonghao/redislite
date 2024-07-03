@@ -52,6 +52,16 @@ running:
 
 ### Installing requirements on Microsoft Windows
 
+#### Chocolatey
+
+Redislite can be installed on Windows using the [Chocolatey](https://community.chocolatey.org/packages/redis) package manager.
+
+```powershell
+choco install redis -y
+```
+
+#### WSL
+
 Redislite can be installed on newer releases of Windows 10 under the Bash on Ubuntu shell.
 
 Install it using the instructions at https://msdn.microsoft.com/commandline/wsl/install_guide 

@@ -173,11 +173,12 @@ args = {
     'ext_modules': [
         Extension('dummy', sources=['src/dummy.c'])
     ],
-    # 'extras_require': {
-    #     ':sys_platform=="darwin"': [],
-    #     ':sys_platform=="linux"': [],
-    # }
 }
+
+if sys.platform in UNSUPPORTED_PLATFORMS:
+    args.pop("cmdclass")
+    args.pop("ext_modules")
+
 setup_arguments = args
 
 # Add any scripts we want to package
@@ -260,14 +261,6 @@ def get_and_update_metadata():
 
 
 if __name__ == '__main__':
-    if sys.platform in UNSUPPORTED_PLATFORMS:
-        print(
-            'The redislite module is not supported on the %r '
-            'platform' % sys.platform,
-            file=sys.stderr
-        )
-        sys.exit(1)
-
     os.environ['CC'] = 'gcc'
 
     logging.basicConfig(level=logging.DEBUG)
